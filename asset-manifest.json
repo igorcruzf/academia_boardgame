@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/academia/static/css/main.104456fb.css",
-    "main.js": "/academia/static/js/main.a2d1827f.js",
-    "static/js/787.6084f81c.chunk.js": "/academia/static/js/787.6084f81c.chunk.js",
-    "index.html": "/academia/index.html",
-    "main.104456fb.css.map": "/academia/static/css/main.104456fb.css.map",
-    "main.a2d1827f.js.map": "/academia/static/js/main.a2d1827f.js.map",
-    "787.6084f81c.chunk.js.map": "/academia/static/js/787.6084f81c.chunk.js.map"
+    "main.css": "/academia_boardgame/static/css/main.104456fb.css",
+    "main.js": "/academia_boardgame/static/js/main.ddfa062e.js",
+    "static/js/787.6084f81c.chunk.js": "/academia_boardgame/static/js/787.6084f81c.chunk.js",
+    "index.html": "/academia_boardgame/index.html",
+    "main.104456fb.css.map": "/academia_boardgame/static/css/main.104456fb.css.map",
+    "main.ddfa062e.js.map": "/academia_boardgame/static/js/main.ddfa062e.js.map",
+    "787.6084f81c.chunk.js.map": "/academia_boardgame/static/js/787.6084f81c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.104456fb.css",
-    "static/js/main.a2d1827f.js"
+    "static/js/main.ddfa062e.js"
   ]
 }
