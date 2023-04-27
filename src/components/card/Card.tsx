@@ -12,6 +12,7 @@ interface CardProps {
 }
 
 export interface CardData {
+    id?: number;
     answer: string;
     title: string;
     name: string;
@@ -39,21 +40,21 @@ const Card: React.FC<CardProps> = ({
     const handleChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value);
         if (onUpdate) {
-            onUpdate({answer, title, name})
+            onUpdate({answer, title:event.target.value, name})
         }
     }
 
     const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value);
         if (onUpdate) {
-            onUpdate({answer, title, name})
+            onUpdate({answer, title, name:event.target.value})
         }
     }
 
     const handleChangeAnswer = (event: React.ChangeEvent<HTMLInputElement>) => {
         setAnswer(event.target.value);
         if (onUpdate) {
-            onUpdate({answer, title, name})
+            onUpdate({answer:event.target.value, title, name})
         }
     }
 

@@ -5,6 +5,7 @@ import {Button} from "@mui/material";
 import './style.css'
 import CardService from "../services/CardService";
 import {useNavigate} from "react-router-dom";
+import AlertsContainer, {AlertData} from "../alerts/AlertsContainer";
 
 const cardService = new CardService();
 const HomePage = () => {
@@ -13,6 +14,8 @@ const HomePage = () => {
 
 
     const [cardData, setCardData] = useState<CardData>();
+    const [alertData, setAlertData] = useState<AlertData | undefined>(undefined);
+
 
     const handleCardSubmit = (cardData: CardData) => {
         setCardData(cardData);
@@ -20,9 +23,25 @@ const HomePage = () => {
 
     const handleSubmit = async () => {
         if(cardData?.title !== undefined && cardData?.answer !== undefined && cardData?.name !== undefined) {
-            await cardService.createCard(cardData);
+            await createCard(cardData);
         }
     };
+
+    const createCard = async (cardData: CardData) => {
+        try {
+            await cardService.createCard(cardData);
+            setAlertData({
+                message: 'Resposta criada com sucesso!',
+                severity: 'success',
+            });
+        } catch (error) {
+            console.error('Failed to create card:', error);
+            setAlertData({
+                message: 'Falha na criação da resposta',
+                severity: 'error',
+            });
+        }
+    }
 
     return (
         <div>
@@ -36,7 +55,7 @@ const HomePage = () => {
                     <Button variant="contained" color={"secondary"} onClick={() => navigate("/academia_boardgame/moderador")} sx={{width:"300px"}}> Tornar-se moderador </Button>
                 </div>
             </div>
-
+            <AlertsContainer alertData={alertData} />
         </div>
     );
 };
