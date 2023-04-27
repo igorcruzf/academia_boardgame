@@ -17,8 +17,8 @@ const HomePage = () => {
     }
 
     const handleSubmit = () => {
-        if(name !== "") {
-            navigate("/academia_boardgame/choose", { state: { name } })
+        if (name !== "") {
+            navigate("/academia_boardgame/choose", {state: {name}})
         } else {
             setAlertData({
                 message: 'Preencha o seu nome!',
@@ -30,9 +30,9 @@ const HomePage = () => {
     return (
         <div>
             <div className={"container"}>
-                <div id={"homeTitle"}> ACADEMIA </div>
+                <div id={"homeTitle"}> ACADEMIA</div>
 
-                <div className={"text name"}> Insira seu nome </div>
+                <div className={"text name"}> Insira seu nome</div>
 
                 <TextField
                     id="standard-textarea"
@@ -43,19 +43,24 @@ const HomePage = () => {
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
-                                <DrawIcon sx={{ color: "#4554DB" }} />
+                                <DrawIcon sx={{color: "#4554DB"}}/>
                             </InputAdornment>
-                        )
+                        ),
+                        style: {
+                            fontFamily: 'Josefin Slab',
+                            fontSize: "18px",
+                            color: "black"
+                        }
                     }}
-                    sx={{width:"300px"}}
+                    sx={{width: "300px"}}
                 />
 
-                <div className={"text subtitle"}> Blefar é imprescindível... </div>
-                <div className={"text"}> Saber é consequência! </div>
+                <div className={"text subtitle"}> Blefar é imprescindível...</div>
+                <div className={"text"}> Saber é consequência!</div>
 
 
                 <Button variant="contained" onClick={handleSubmit} sx={{
-                    fontFamily:'Josefin Slab',
+                    fontFamily: 'Josefin Slab',
                     textTransform: 'none',
                     fontSize: "28px",
                     background: "#4554DB",
@@ -66,7 +71,7 @@ const HomePage = () => {
                 }}>
                     Jogar
                 </Button>
-                <AlertsContainer alertData={alertData} />
+                <AlertsContainer alertData={alertData}/>
             </div>
         </div>
     );

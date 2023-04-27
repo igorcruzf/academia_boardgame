@@ -3,19 +3,20 @@ import React from "react";
 import {NavigateOptions, useNavigate} from "react-router-dom";
 
 
-interface ChoosePlayerButtonProps{
+interface ChoosePlayerButtonProps {
     name: string,
     navigateTo: string
 
     navigateOptions: NavigateOptions
 }
-const ChoosePlayerButton: React.FC<ChoosePlayerButtonProps> =  ({name, navigateTo, navigateOptions}) => {
+
+const ChoosePlayerButton: React.FC<ChoosePlayerButtonProps> = ({name, navigateTo, navigateOptions}) => {
     const navigate = useNavigate();
 
     return <Button variant="contained" onClick={() => navigate(navigateTo, navigateOptions)} sx={{
         width: "320px",
         height: "45px",
-        fontFamily:'Josefin Slab',
+        fontFamily: 'Josefin Slab',
         textTransform: 'none',
         fontSize: "28px",
         background: "#AAB2FF",

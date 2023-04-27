@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './style.css';
-import {Divider, InputAdornment, TextField} from "@mui/material";
+import {InputAdornment, TextField} from "@mui/material";
 
 interface CardProps {
     initialAnswer?: string;
@@ -9,6 +9,7 @@ interface CardProps {
     initialScore?: number;
     isModerator?: boolean;
     onUpdate?: (cardData: CardData) => void;
+    minRows?: number;
 }
 
 export interface CardData {
@@ -24,7 +25,8 @@ const Card: React.FC<CardProps> = ({
                                        initialScore = 0,
                                        initialName = "",
                                        isModerator = false,
-                                       onUpdate
+                                       onUpdate,
+                                       minRows = 1
                                    }) => {
     const [score, setScore] = useState(initialScore);
     const [answer, setAnswer] = useState(initialAnswer);
@@ -40,21 +42,21 @@ const Card: React.FC<CardProps> = ({
     const handleChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value);
         if (onUpdate) {
-            onUpdate({answer, title:event.target.value, name})
+            onUpdate({answer, title: event.target.value, name})
         }
     }
 
     const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value);
         if (onUpdate) {
-            onUpdate({answer, title, name:event.target.value})
+            onUpdate({answer, title, name: event.target.value})
         }
     }
 
     const handleChangeAnswer = (event: React.ChangeEvent<HTMLInputElement>) => {
         setAnswer(event.target.value);
         if (onUpdate) {
-            onUpdate({answer:event.target.value, title, name})
+            onUpdate({answer: event.target.value, title, name})
         }
     }
 
@@ -67,24 +69,25 @@ const Card: React.FC<CardProps> = ({
                     fullWidth
                     size={"small"}
                     value={title}
-                    onChange={ handleChangeTitle }
+                    onChange={handleChangeTitle}
                     InputProps={{
                         readOnly: isModerator,
-                        style: {fontFamily: 'Josefin Slab',
+                        style: {
+                            fontFamily: 'Josefin Slab',
                             fontSize: "18px",
                             color: "black"
                         }
                     }}
-                    InputLabelProps={{style: {
-                        fontFamily: 'Josefin Slab',
-                        fontSize: "18px",
+                    InputLabelProps={{
+                        style: {
+                            fontFamily: 'Josefin Slab',
+                            fontSize: "18px",
                             color: "black"
-                    }}}
-                    sx = {{fieldset: { borderColor: "#071BCF" }}}
+                        }
+                    }}
+                    sx={{fieldset: {borderColor: "#071BCF"}}}
                 />
             </div>
-
-            <Divider/>
 
             <TextField
                 id="outlined-textarea"
@@ -92,20 +95,24 @@ const Card: React.FC<CardProps> = ({
                 multiline
                 size={"medium"}
                 value={answer}
+                minRows={minRows}
                 onChange={handleChangeAnswer}
                 InputProps={{
                     readOnly: isModerator,
-                    style: {fontFamily: 'Josefin Slab',
+                    style: {
+                        fontFamily: 'Josefin Slab',
                         fontSize: "28px",
                         color: "black"
                     }
                 }}
-                InputLabelProps={{style: {
+                InputLabelProps={{
+                    style: {
                         fontFamily: 'Josefin Slab',
                         fontSize: "18px",
                         color: "black"
-                    }}}
-                sx = {{fieldset: { borderColor: "#071BCF" }}}
+                    }
+                }}
+                sx={{fieldset: {borderColor: "#071BCF"}}}
             />
 
             <div className={"scoreAndNameContainer"}>
@@ -125,23 +132,26 @@ const Card: React.FC<CardProps> = ({
                             </InputAdornment>
                         ),
                         readOnly: true,
-                        style: {fontFamily: 'Josefin Slab',
+                        style: {
+                            fontFamily: 'Josefin Slab',
                             fontSize: "20px",
                             color: "black"
                         }
                     }}
-                    InputLabelProps={{style: {
+                    InputLabelProps={{
+                        style: {
                             fontFamily: 'Josefin Slab',
                             fontSize: "18px",
                             color: "black"
-                        }}}
+                        }
+                    }}
                     value={score}
                     sx={{
                         input: {
                             textAlign: "center",
                         },
                         visibility: isModerator ? "visible" : "hidden",
-                        fieldset: { borderColor: "#071BCF" }
+                        fieldset: {borderColor: "#071BCF"}
                     }}
                 />
 
@@ -154,23 +164,24 @@ const Card: React.FC<CardProps> = ({
                         onChange={handleChangeName}
                         InputProps={{
                             readOnly: true,
-                            style: {fontFamily: 'Josefin Slab',
+                            style: {
+                                fontFamily: 'Josefin Slab',
                                 fontSize: "18px",
                                 color: "black"
                             }
                         }}
-                        InputLabelProps={{style: {
+                        InputLabelProps={{
+                            style: {
                                 fontFamily: 'Josefin Slab',
                                 fontSize: "18px",
                                 color: "black"
-                            }}}
-                        sx = {{fieldset: { borderColor: "#071BCF" }}}
+                            }
+                        }}
+                        sx={{fieldset: {borderColor: "#071BCF"}}}
                     />
                 </div>
 
             </div>
-
-
         </div>
 
     );

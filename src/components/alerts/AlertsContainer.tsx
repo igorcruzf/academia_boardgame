@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import CustomSnackbar from './CustomSnackbar';
 
 interface AlertsContainerProps {
     alertData?: AlertData;
 }
+
 export interface AlertData {
     message: string;
     severity: 'success' | 'error';
 }
 
-const AlertsContainer: React.FC<AlertsContainerProps> = ({ alertData}) => {
+const AlertsContainer: React.FC<AlertsContainerProps> = ({alertData}) => {
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
@@ -23,7 +24,8 @@ const AlertsContainer: React.FC<AlertsContainerProps> = ({ alertData}) => {
     };
 
     return (
-        <CustomSnackbar open={open} message={alertData?.message} severity={alertData?.severity} onClose={handleCloseAlert} />
+        <CustomSnackbar open={open} message={alertData?.message} severity={alertData?.severity}
+                        onClose={handleCloseAlert}/>
     );
 };
 

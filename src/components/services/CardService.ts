@@ -1,5 +1,6 @@
 import axios from "axios";
 import {CardData} from "../card/Card";
+
 class CardService {
     private readonly baseURL: string;
 
@@ -20,7 +21,7 @@ class CardService {
         return response.data as CardData[];
     }
 
-    public async deleteCards(): Promise<void>{
+    public async deleteCards(): Promise<void> {
         await axios.delete(this.baseURL);
     }
 }

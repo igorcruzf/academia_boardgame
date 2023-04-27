@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Card, {CardData} from '../card/Card';
-import {Button, IconButton} from "@mui/material";
+import {Backdrop, Button, CircularProgress, IconButton} from "@mui/material";
 import ShuffleIcon from '@mui/icons-material/Shuffle';
 import StartIcon from '@mui/icons-material/Start';
 
@@ -16,14 +16,20 @@ const ModeratorPage = () => {
 
     const location = useLocation();
 
-    const { name } = location.state;
+    const {name} = location.state;
 
     const [cardList, setCardList] = useState<CardData[]>([]);
     const [alertData, setAlertData] = useState<AlertData | undefined>(undefined);
 
+    const [open, setOpen] = React.useState(true);
+    const [loading, setLoading] = React.useState(false);
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const handleRefresh = async () => {
-        try{
+        try {
+            setLoading(true)
             await cardService.deleteCards();
             setAlertData({
                 message: 'Respostas resetadas com sucesso!',
@@ -37,6 +43,7 @@ const ModeratorPage = () => {
                 severity: 'error',
             });
         }
+        setLoading(false)
     }
 
 
@@ -46,6 +53,7 @@ const ModeratorPage = () => {
                 const newCardList = await cardService.getCards();
                 if (newCardList.length !== cardList.length) {
                     setCardList(newCardList);
+                    handleClose();
                 }
             } catch (error) {
                 console.error('Failed to get cards:', error);
@@ -64,7 +72,7 @@ const ModeratorPage = () => {
 
     const handleRandomize = async () => {
         const newCardList = [...cardList];
-        let currentIndex = newCardList.length,  randomIndex;
+        let currentIndex = newCardList.length, randomIndex;
 
         while (currentIndex !== 0) {
 
@@ -79,17 +87,27 @@ const ModeratorPage = () => {
 
     return (
         <div>
+            <Backdrop
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                open={open}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
+
             <div className={"moderatorPageContainer"}>
                 <div className={"backButton"}>
-                    <IconButton sx={{color: "#071BCF"}} onClick={ () => navigate("/academia_boardgame/choose", {state: {name}})}>
+                    <IconButton sx={{color: "#071BCF"}}
+                                onClick={() => navigate("/academia_boardgame/choose", {state: {name}})}>
                         <ArrowBackIcon/>
                     </IconButton>
                 </div>
 
-                <div id={"moderatorTitle"} className={"title"} onClick={() => navigate("/academia_boardgame/")} > ACADEMIA </div>
+                <div id={"moderatorTitle"} className={"title"}
+                     onClick={() => navigate("/academia_boardgame/")}> ACADEMIA
+                </div>
 
                 <div className={"cardListContainer"}>
-                    {  cardList.map( (cardData) =>
+                    {cardList.map((cardData) =>
                         <div className={"moderatorCard"} key={cardData.id}>
                             <Card initialName={cardData.name}
                                   initialAnswer={cardData.answer}
@@ -99,9 +117,11 @@ const ModeratorPage = () => {
                         </div>
                     )}
 
-                    <Button variant="contained" onClick={handleRandomize} sx={{width:"319px", height:"45px", backgroundColor:"#868686",
-                        marginBottom:"30px",
-                        fontFamily:'Josefin Slab',
+                    <Button variant="contained" onClick={handleRandomize} sx={{
+                        width: "319px", height: "45px", backgroundColor: "#868686",
+                        marginBottom: "30px",
+                        marginTop: "20px",
+                        fontFamily: 'Josefin Slab',
                         textTransform: 'none',
                         fontSize: "28px",
                     }}>
@@ -109,18 +129,20 @@ const ModeratorPage = () => {
                         <ShuffleIcon sx={{marginLeft: "10px"}}/>
                     </Button>
 
-                    <Button variant="contained" onClick={handleRefresh} sx={{width:"319px", height:"45px", backgroundColor:"#4554DB",
-                        marginBottom:"10px",
-                        fontFamily:'Josefin Slab',
+                    <Button variant="contained" onClick={handleRefresh} sx={{
+                        width: "319px", height: "45px", backgroundColor: "#4554DB",
+                        marginBottom: "10px",
+                        fontFamily: 'Josefin Slab',
                         textTransform: 'none',
-                        fontSize: "28px",}}>
-                        Próxima
-                        <StartIcon sx={{marginLeft: "10px"}}/>
+                        fontSize: "28px",
+                    }}>
+                        {loading? <CircularProgress color="inherit" /> : "Próxima"}
+                        {loading? "" : <StartIcon sx={{marginLeft: "10px"}}/> }
                     </Button>
                 </div>
 
             </div>
-            <AlertsContainer alertData={alertData} />
+            <AlertsContainer alertData={alertData}/>
         </div>
     );
 };
