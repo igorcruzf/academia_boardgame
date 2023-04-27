@@ -69,8 +69,18 @@ const Card: React.FC<CardProps> = ({
                     value={title}
                     onChange={ handleChangeTitle }
                     InputProps={{
-                        readOnly: isModerator
+                        readOnly: isModerator,
+                        style: {fontFamily: 'Josefin Slab',
+                            fontSize: "18px",
+                            color: "black"
+                        }
                     }}
+                    InputLabelProps={{style: {
+                        fontFamily: 'Josefin Slab',
+                        fontSize: "18px",
+                            color: "black"
+                    }}}
+                    sx = {{fieldset: { borderColor: "#071BCF" }}}
                 />
             </div>
 
@@ -84,11 +94,19 @@ const Card: React.FC<CardProps> = ({
                 value={answer}
                 onChange={handleChangeAnswer}
                 InputProps={{
-                    readOnly: isModerator
+                    readOnly: isModerator,
+                    style: {fontFamily: 'Josefin Slab',
+                        fontSize: "28px",
+                        color: "black"
+                    }
                 }}
+                InputLabelProps={{style: {
+                        fontFamily: 'Josefin Slab',
+                        fontSize: "18px",
+                        color: "black"
+                    }}}
+                sx = {{fieldset: { borderColor: "#071BCF" }}}
             />
-
-            <Divider/>
 
             <div className={"scoreAndNameContainer"}>
                 <TextField
@@ -107,29 +125,47 @@ const Card: React.FC<CardProps> = ({
                             </InputAdornment>
                         ),
                         readOnly: true,
+                        style: {fontFamily: 'Josefin Slab',
+                            fontSize: "20px",
+                            color: "black"
+                        }
                     }}
+                    InputLabelProps={{style: {
+                            fontFamily: 'Josefin Slab',
+                            fontSize: "18px",
+                            color: "black"
+                        }}}
                     value={score}
                     sx={{
                         input: {
                             textAlign: "center",
                         },
-                        visibility: isModerator ? "visible" : "hidden"
+                        visibility: isModerator ? "visible" : "hidden",
+                        fieldset: { borderColor: "#071BCF" }
                     }}
                 />
 
-                <div className={"nameContainer"}>
-                    <div className={"name"}>
-                        <TextField
-                            id="outlined-textarea"
-                            label="Nome do Jogador"
-                            size={"small"}
-                            value={name}
-                            onChange={handleChangeName}
-                            InputProps={{
-                                readOnly: isModerator,
-                            }}
-                        />
-                    </div>
+                <div className={"cardName"}>
+                    <TextField
+                        id="outlined-textarea"
+                        label="Jogador"
+                        size={"small"}
+                        value={name}
+                        onChange={handleChangeName}
+                        InputProps={{
+                            readOnly: true,
+                            style: {fontFamily: 'Josefin Slab',
+                                fontSize: "18px",
+                                color: "black"
+                            }
+                        }}
+                        InputLabelProps={{style: {
+                                fontFamily: 'Josefin Slab',
+                                fontSize: "18px",
+                                color: "black"
+                            }}}
+                        sx = {{fieldset: { borderColor: "#071BCF" }}}
+                    />
                 </div>
 
             </div>

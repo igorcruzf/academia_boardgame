@@ -1,25 +1,26 @@
 import React, {useEffect, useState} from 'react';
 import Card, {CardData} from '../card/Card';
-import {Button} from "@mui/material";
+import {Button, IconButton} from "@mui/material";
+import ShuffleIcon from '@mui/icons-material/Shuffle';
+import StartIcon from '@mui/icons-material/Start';
 
 import './style.css'
 import CardService from "../services/CardService";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import AlertsContainer, {AlertData} from "../alerts/AlertsContainer";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const cardService = new CardService();
 const ModeratorPage = () => {
     const navigate = useNavigate();
 
-    const [cardData, setCardData] = useState<CardData>();
-    const [isSubmitted, setIsSubmitted] = useState(false);
+    const location = useLocation();
+
+    const { name } = location.state;
 
     const [cardList, setCardList] = useState<CardData[]>([]);
     const [alertData, setAlertData] = useState<AlertData | undefined>(undefined);
 
-    const handleCardSubmit = async (cardData: CardData) => {
-        setCardData(cardData);
-    };
 
     const handleRefresh = async () => {
         try{
@@ -28,7 +29,7 @@ const ModeratorPage = () => {
                 message: 'Respostas resetadas com sucesso!',
                 severity: 'success',
             });
-            setIsSubmitted(false)
+            navigate("/academia_boardgame/choose", {state: {name}})
         } catch (error) {
             console.error('Failed to delete cards:', error);
             setAlertData({
@@ -38,87 +39,57 @@ const ModeratorPage = () => {
         }
     }
 
-    const createCard = async (cardData: CardData) => {
-        setIsSubmitted(true)
-        try {
-            await cardService.createCard(cardData);
-            setAlertData({
-                message: 'Resposta criada com sucesso!',
-                severity: 'success',
-            });
-        } catch (error) {
-            console.error('Failed to create card:', error);
-            setAlertData({
-                message: 'Falha na criação da resposta',
-                severity: 'error',
-            });
-            setIsSubmitted(false)
-        }
-    }
-    const getCards = async () => {
-        try {
-            const newCardList = await cardService.getCards();
-            if(newCardList.length !== cardList.length) {
-                setCardList(newCardList);
-            }
-        } catch (error) {
-            console.error('Failed to get cards:', error);
-        }
-    }
 
     useEffect(() => {
-        if (isSubmitted) {
-            const interval = setInterval(() => {
-                getCards();
-            }, 2000);
+        const interval = setInterval(async () => {
+            try {
+                const newCardList = await cardService.getCards();
+                if (newCardList.length !== cardList.length) {
+                    setCardList(newCardList);
+                }
+            } catch (error) {
+                console.error('Failed to get cards:', error);
+                setAlertData({
+                    message: 'Falha na busca por definições!',
+                    severity: 'error',
+                });
+            }
+        }, 2000);
 
-            return () => {
-                clearInterval(interval);
-            };
-        }
-    }, [isSubmitted]);
+        return () => {
+            clearInterval(interval);
+        };
 
-
-    const handleSubmit = async () => {
-        if(cardData?.title !== undefined && cardData?.answer !== undefined && cardData?.name !== undefined) {
-            await createCard(cardData);
-            await getCards();
-        }
-    };
+    }, [cardList.length]);
 
     const handleRandomize = async () => {
         const newCardList = [...cardList];
         let currentIndex = newCardList.length,  randomIndex;
 
-        // While there remain elements to shuffle.
         while (currentIndex !== 0) {
 
-            // Pick a remaining element.
             randomIndex = Math.floor(Math.random() * currentIndex);
             currentIndex--;
 
-            // And swap it with the current element.
             [newCardList[currentIndex], newCardList[randomIndex]] = [
                 newCardList[randomIndex], newCardList[currentIndex]];
         }
-        console.log(newCardList)
         setCardList(newCardList)
     }
 
     return (
         <div>
             <div className={"moderatorPageContainer"}>
-                <div className={"container"} style={{display: isSubmitted? "none" : "flex"}}>
-                    <Card initialName={"Resposta Certa"} onUpdate={(cardData: CardData) => handleCardSubmit(cardData)}/>
-                    <div className={"submit"}>
-                        <Button variant="contained" onClick={handleSubmit}> Enviar </Button>
-                    </div>
+                <div className={"backButton"}>
+                    <IconButton sx={{color: "#071BCF"}} onClick={ () => navigate("/academia_boardgame/choose", {state: {name}})}>
+                        <ArrowBackIcon/>
+                    </IconButton>
                 </div>
 
-                <div className={"cardListContainer"} style={{display: isSubmitted? "flex" : "none"}}>
-                    <Button variant="contained" color="secondary" onClick={handleRandomize} sx={{width:"200px",
-                        marginBottom:"10px"}}> Randomizar </Button>
-                    {cardList.map( (cardData) =>
+                <div id={"moderatorTitle"} className={"title"} onClick={() => navigate("/academia_boardgame/")} > ACADEMIA </div>
+
+                <div className={"cardListContainer"}>
+                    {  cardList.map( (cardData) =>
                         <div className={"moderatorCard"} key={cardData.id}>
                             <Card initialName={cardData.name}
                                   initialAnswer={cardData.answer}
@@ -127,12 +98,27 @@ const ModeratorPage = () => {
                             />
                         </div>
                     )}
-                    <Button variant="contained" onClick={handleRefresh} sx={{width:"100px"}}> Próxima </Button>
+
+                    <Button variant="contained" onClick={handleRandomize} sx={{width:"319px", height:"45px", backgroundColor:"#868686",
+                        marginBottom:"30px",
+                        fontFamily:'Josefin Slab',
+                        textTransform: 'none',
+                        fontSize: "28px",
+                    }}>
+                        Aleatorizar
+                        <ShuffleIcon sx={{marginLeft: "10px"}}/>
+                    </Button>
+
+                    <Button variant="contained" onClick={handleRefresh} sx={{width:"319px", height:"45px", backgroundColor:"#4554DB",
+                        marginBottom:"10px",
+                        fontFamily:'Josefin Slab',
+                        textTransform: 'none',
+                        fontSize: "28px",}}>
+                        Próxima
+                        <StartIcon sx={{marginLeft: "10px"}}/>
+                    </Button>
                 </div>
 
-                <div className={"user"}>
-                    <Button variant="contained" color={"secondary"} onClick={() => navigate("/academia_boardgame")} sx={{width:"300px"}}> Tornar-se usuário </Button>
-                </div>
             </div>
             <AlertsContainer alertData={alertData} />
         </div>

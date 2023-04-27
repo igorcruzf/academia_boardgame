@@ -1,26 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Jacques+Francois+Shadow&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Slab&display=swap');
 
-#homeTitle{
+.title{
     font-family: 'Jacques Francois Shadow', cursive;
-    font-size: 48px;
+    font-size: 35px;
     color: #071BCF;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
-.text{
+.chooseText{
     font-family: 'Josefin Slab', serif;
     font-style: normal;
-    font-size: 28px;
+    font-size: 25px;
     color: black;
-    margin-bottom: 20px;
 }
 
-.name {
-    margin-top: 80px;
-    margin-bottom: 10px;
+.chooseName {
+    margin-top: 150px;
+    margin-bottom: 30px;
 }
 
-.subtitle{
-    margin-top: 200px;
+#moderator{
+    margin-top: 40px;
 }

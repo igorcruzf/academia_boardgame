@@ -17,6 +17,13 @@
 }
 
 .moderatorCard{
+    margin-bottom: 10px;
+    border: 1px solid #071BCF;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#moderatorTitle{
     margin-bottom: 20px;
 }
 

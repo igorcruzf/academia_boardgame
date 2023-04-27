@@ -1,0 +1,24 @@
+#userContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+#cardSubmit{
+    margin-top: 30px;
+}
+
+#moderator{
+    margin-top: 40px;
+}
+
+#userTitle{
+    margin-bottom: 10px;
+}
+
+.backButton{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}

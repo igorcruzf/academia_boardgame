@@ -6,15 +6,11 @@
     padding: 10px;
     border: 1px solid rgba(0, 0, 0, 0.23);
     border-radius: 15px;
-    background: #ffffff;
+    background: #AAB2FF;
 }
 
 button {
-    width: 30px;
-    height: 30px;
-    color: white;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
 }
 
@@ -32,19 +28,24 @@ button {
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    margin: 5px;
 }
 
 .decrease{
-    background-color: #ff8792;
+    background-color: #AAB2FF;
+    color: black;
+    font-size: 25px;
+    margin-bottom: 5px;
 }
 
 .increase{
-    background-color: #88c0f8;
+    background-color: #AAB2FF;
+    color: black;
+    font-size: 25px;
+    margin-bottom: 5px;
 }
 
 
-.nameContainer{
+.cardName{
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;

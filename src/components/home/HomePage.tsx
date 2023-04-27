@@ -1,43 +1,27 @@
 import React, {useState} from 'react';
-import Card, {CardData} from '../card/Card';
-import {Button} from "@mui/material";
 
 import './style.css'
-import CardService from "../services/CardService";
 import {useNavigate} from "react-router-dom";
+import {Button, InputAdornment, TextField} from "@mui/material";
+import DrawIcon from "@mui/icons-material/Draw";
 import AlertsContainer, {AlertData} from "../alerts/AlertsContainer";
 
-const cardService = new CardService();
 const HomePage = () => {
 
     const navigate = useNavigate();
-
-
-    const [cardData, setCardData] = useState<CardData>();
+    const [name, setName] = useState("");
     const [alertData, setAlertData] = useState<AlertData | undefined>(undefined);
 
+    const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setName(event.target.value);
+    }
 
-    const handleCardSubmit = (cardData: CardData) => {
-        setCardData(cardData);
-    };
-
-    const handleSubmit = async () => {
-        if(cardData?.title !== undefined && cardData?.answer !== undefined && cardData?.name !== undefined) {
-            await createCard(cardData);
-        }
-    };
-
-    const createCard = async (cardData: CardData) => {
-        try {
-            await cardService.createCard(cardData);
+    const handleSubmit = () => {
+        if(name !== "") {
+            navigate("/academia_boardgame/choose", { state: { name } })
+        } else {
             setAlertData({
-                message: 'Resposta criada com sucesso!',
-                severity: 'success',
-            });
-        } catch (error) {
-            console.error('Failed to create card:', error);
-            setAlertData({
-                message: 'Falha na criação da resposta',
+                message: 'Preencha o seu nome!',
                 severity: 'error',
             });
         }
@@ -46,16 +30,44 @@ const HomePage = () => {
     return (
         <div>
             <div className={"container"}>
-                <Card onUpdate={(cardData: CardData) => handleCardSubmit(cardData)}/>
-                <div className={"submit"}>
-                    <Button variant="contained" onClick={handleSubmit}> Enviar </Button>
-                </div>
+                <div id={"homeTitle"}> ACADEMIA </div>
 
-                <div className={"moderator"}>
-                    <Button variant="contained" color={"secondary"} onClick={() => navigate("/academia_boardgame/moderador")} sx={{width:"300px"}}> Tornar-se moderador </Button>
-                </div>
+                <div className={"text name"}> Insira seu nome </div>
+
+                <TextField
+                    id="standard-textarea"
+                    size={"medium"}
+                    variant={"standard"}
+                    value={name}
+                    onChange={handleChangeName}
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <DrawIcon sx={{ color: "#4554DB" }} />
+                            </InputAdornment>
+                        )
+                    }}
+                    sx={{width:"300px"}}
+                />
+
+                <div className={"text subtitle"}> Blefar é imprescindível... </div>
+                <div className={"text"}> Saber é consequência! </div>
+
+
+                <Button variant="contained" onClick={handleSubmit} sx={{
+                    fontFamily:'Josefin Slab',
+                    textTransform: 'none',
+                    fontSize: "28px",
+                    background: "#4554DB",
+                    width: "319px",
+                    height: "45px",
+                    filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
+                    border: "1px solid #071BCF"
+                }}>
+                    Jogar
+                </Button>
+                <AlertsContainer alertData={alertData} />
             </div>
-            <AlertsContainer alertData={alertData} />
         </div>
     );
 };
