@@ -33,7 +33,7 @@ const HomePage = () => {
                 </div>
 
                 <div className={"moderator"}>
-                    <Button variant="contained" color={"secondary"} onClick={() => navigate("/moderador")} sx={{width:"300px"}}> Tornar-se moderador </Button>
+                    <Button variant="contained" color={"secondary"} onClick={() => navigate("/academia_boardgame/moderador")} sx={{width:"300px"}}> Tornar-se moderador </Button>
                 </div>
             </div>
 

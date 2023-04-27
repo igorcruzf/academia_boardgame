@@ -4,7 +4,7 @@ class CardService {
     private readonly baseURL: string;
 
     constructor() {
-        this.baseURL = 'https://iglu.onrender.com/cards';
+        this.baseURL = 'https://academia-4oto.onrender.com/cards';
     }
 
     public async createCard(cardData: CardData): Promise<void> {

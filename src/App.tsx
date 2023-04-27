@@ -10,8 +10,9 @@ function App() {
       <div className="content">
           <div id={"main"}>
               <Routes>
+                  <Route path="/academia_boardgame" element={<HomePage/>}/>
                   <Route path="/" element={<HomePage/>}/>
-                  <Route path="/moderador" element={<ModeratorPage/>}/>
+                  <Route path="/academia_boardgame/moderador" element={<ModeratorPage/>}/>
               </Routes>
           </div>
       </div>

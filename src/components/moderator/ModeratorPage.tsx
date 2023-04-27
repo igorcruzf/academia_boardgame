@@ -64,7 +64,7 @@ const ModeratorPage = () => {
                 </div>
 
                 <div className={"user"}>
-                    <Button variant="contained" color={"secondary"} onClick={() => navigate("/")} sx={{width:"300px"}}> Tornar-se usuário </Button>
+                    <Button variant="contained" color={"secondary"} onClick={() => navigate("/academia_boardgame")} sx={{width:"300px"}}> Tornar-se usuário </Button>
                 </div>
             </div>
         </div>
