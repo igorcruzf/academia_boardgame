@@ -5,6 +5,7 @@ import UserPage from "./components/user/UserPage";
 import ModeratorPage from "./components/moderator/ModeratorPage";
 import HomePage from "./components/home/HomePage";
 import ChoosePlayerPage from "./components/choose_player/ChoosePlayerPage";
+import NotFoundPage from "./components/not_found/NotFoundPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
                   <Route path="/academia_boardgame/choose" element={<ChoosePlayerPage/>}/>
                   <Route path="/academia_boardgame/user" element={<UserPage/>}/>
                   <Route path="/academia_boardgame/moderator" element={<ModeratorPage/>}/>
+                  <Route path="*" element={<NotFoundPage/>}/>
               </Routes>
           </div>
       </div>
