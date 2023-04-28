@@ -1,14 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import Card, {CardData} from '../card/Card';
-import {Backdrop, Button, CircularProgress, IconButton} from "@mui/material";
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Backdrop, Button, CircularProgress, IconButton } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
 import StartIcon from '@mui/icons-material/Start';
+import { io } from 'socket.io-client';
+import Card, { CardData } from '../card/Card';
+import AlertsContainer, { AlertData } from '../alerts/AlertsContainer';
+import CardService from '../services/CardService';
 
-import './style.css'
-import CardService from "../services/CardService";
-import {useLocation, useNavigate} from "react-router-dom";
-import AlertsContainer, {AlertData} from "../alerts/AlertsContainer";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import './style.css';
 
 const cardService = new CardService();
 const ModeratorPage = () => {
@@ -48,7 +49,8 @@ const ModeratorPage = () => {
 
 
     useEffect(() => {
-        const interval = setInterval(async () => {
+
+        const getCards = async () => {
             try {
                 const newCardList = await cardService.getCards();
                 if (newCardList.length !== cardList.length) {
@@ -62,12 +64,20 @@ const ModeratorPage = () => {
                     severity: 'error',
                 });
             }
-        }, 2000);
-
-        return () => {
-            clearInterval(interval);
         };
 
+        getCards();
+
+        const socket = io('wss://academia-4oto.onrender.com');
+
+        socket.on('cards', (newCardList) => {
+            setCardList(newCardList);
+            handleClose();
+        });
+
+        return () => {
+            socket.disconnect();
+        };
     }, [cardList.length]);
 
     const handleRandomize = async () => {
@@ -88,10 +98,10 @@ const ModeratorPage = () => {
     return (
         <div>
             <Backdrop
-                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                sx={{color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1}}
                 open={open}
             >
-                <CircularProgress color="inherit" />
+                <CircularProgress color="inherit"/>
             </Backdrop>
 
             <div className={"moderatorPageContainer"}>
@@ -136,8 +146,8 @@ const ModeratorPage = () => {
                         textTransform: 'none',
                         fontSize: "28px",
                     }}>
-                        {loading? <CircularProgress color="inherit" /> : "Próxima"}
-                        {loading? "" : <StartIcon sx={{marginLeft: "10px"}}/> }
+                        {loading ? <CircularProgress color="inherit"/> : "Próxima"}
+                        {loading ? "" : <StartIcon sx={{marginLeft: "10px"}}/>}
                     </Button>
                 </div>
 
