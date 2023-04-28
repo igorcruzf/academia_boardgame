@@ -1,46 +1,58 @@
-# Getting Started with Create React App
+# Auxiliador para o Jogo Academia
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Descrição do Projeto
 
-## Available Scripts
+O Auxiliador para o Jogo Academia é uma aplicação desenvolvida em React com TypeScript que oferece suporte e funcionalidades adicionais para o jogo de palavras chamado "Academia". Este auxiliador possui duas funções principais: Jogador e Moderador.
 
-In the project directory, you can run:
+- **Jogador:** Como jogador, você tem a capacidade de cadastrar um card com a palavra da rodada, a definição e o seu nome. Esses cards são compartilhados com o moderador para ser usado na partida.
 
-### `npm start`
+- **Moderador:** Como moderador, você tem a responsabilidade de cadastrar a resposta correta para a rodada. Além disso, você receberá os cards gerados pelos jogadores. Depois de coletar todos os cards, você pode pontuá-los de acordo com as regras do jogo e conduzir a partida.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Funcionalidades Principais
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+O Auxiliador para o Jogo Academia possui as seguintes funcionalidades principais:
 
-### `npm test`
+1. **Cadastro de Cards:** Os jogadores podem cadastrar cards com a definição, a palavra e o nome do jogador.
+2. **Compartilhamento de Cards:** Os cards cadastrados pelos jogadores são compartilhados com o moderador por meio de uma conexão WebSocket.
+3. **Cadastro de Resposta Correta:** Os moderadores podem cadastrar a resposta correta para a rodada.
+4. **Pontuação dos Cards:** Os moderadores podem pontuar os cards de acordo com as regras do jogo.
+5. **Finalização da rodada:** Os moderadores pode finalizar a rodada e com isso apagar todos os cards gerados para essa rodada.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Configuração do Projeto
 
-### `npm run build`
+Siga as etapas abaixo para configurar e executar o Auxiliador para o Jogo Academia localmente:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Certifique-se de ter o Node.js instalado em sua máquina.
+2. Faça o clone deste repositório para o seu ambiente local.
+3. Acesse o diretório do projeto no terminal.
+4. Execute o comando `npm install` para instalar todas as dependências necessárias.
+5. Execute o comando `npm start` para iniciar a aplicação.
+6. Acesse a aplicação no seu navegador usando o endereço `http://localhost:3000`.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Tecnologias Utilizadas
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+O Auxiliador para o Jogo Academia foi desenvolvido utilizando as seguintes tecnologias:
 
-### `npm run eject`
+- React: uma biblioteca JavaScript de código aberto para criar interfaces de usuário.
+- TypeScript: uma linguagem de programação baseada em JavaScript que adiciona tipagem estática opcional ao código.
+- Socket.IO: uma biblioteca que permite a comunicação em tempo real entre cliente e servidor por meio de WebSockets. Utilizamos o `socket.io-client` para receber as respostas dos jogadores.
+- Axios: uma biblioteca para fazer requisições HTTP a um servidor. Utilizamos o Axios para se conectar ao backend e realizar a criação e deleção das respostas.
+- Material-UI: uma biblioteca de componentes React que segue as diretrizes de design do Material Design. Utilizamos o Material-UI para ajudar a estilizar e construir a interface do usuário do Auxiliador.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Deploy
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+O Auxiliador para o Jogo Academia pode ser facilmente implantado usando o GitHub Pages. Siga as etapas abaixo para realizar o deploy do projeto:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. Certifique-se de ter o Git instalado em sua máquina e uma conta no GitHub.
+2. Faça o clone deste repositório para o seu ambiente local, caso ainda não tenha feito.
+3. Acesse o diretório do projeto no terminal.
+4. Execute o comando `npm run deploy`.
+5. Aguarde até que o processo de build e deploy seja concluído.
+6. Após a conclusão, o Auxiliador será implantado no GitHub Pages e estará disponível no seguinte URL: `https://seu-nome-de-usuario.github.io/nome-do-repositorio`.
 
-## Learn More
+Obs: Está disponível no URL: `https://igorcruzf.github.io/academia_boardgame`.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Repositório do Backend
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+O código-fonte do backend do Jogo Academia está disponível no seguinte repositório do GitHub: [academia_boardgame_backend](https://github.com/igorcruzf/academia_boardgame_backend). 
