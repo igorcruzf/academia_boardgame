@@ -13,10 +13,10 @@ O Auxiliador para o Jogo Academia é uma aplicação desenvolvida em React com T
 O Auxiliador para o Jogo Academia possui as seguintes funcionalidades principais:
 
 1. **Cadastro de Cards:** Os jogadores podem cadastrar cards com a definição, a palavra e o nome do jogador.
-2. **Compartilhamento de Cards:** Os cards cadastrados pelos jogadores são compartilhados com o moderador por meio de uma conexão WebSocket.
-3. **Cadastro de Resposta Correta:** Os moderadores podem cadastrar a resposta correta para a rodada.
-4. **Pontuação dos Cards:** Os moderadores podem pontuar os cards de acordo com as regras do jogo.
-5. **Finalização da rodada:** Os moderadores pode finalizar a rodada e com isso apagar todos os cards gerados para essa rodada.
+2. **Compartilhamento de Cards:** Os cards cadastrados pelos jogadores são compartilhados com o moderador.
+3. **Cadastro de Resposta Correta:** O moderador pode cadastrar a resposta correta para a rodada.
+4. **Pontuação dos Cards:** O moderador pode pontuar os cards de acordo com as regras do jogo.
+5. **Finalização da rodada:** O moderador pode finalizar a rodada e com isso apagar todos os cards gerados para essa rodada.
 
 ## Configuração do Projeto
 
