@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import {Route, Routes} from "react-router-dom";
 import UserPage from "./components/user/UserPage";
 import ModeratorPage from "./components/moderator/ModeratorPage";
