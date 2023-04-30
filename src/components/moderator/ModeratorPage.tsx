@@ -10,6 +10,10 @@ import AlertsContainer, { AlertData } from '../alerts/AlertsContainer';
 import CardService from '../services/CardService';
 
 import './style.css';
+import Deck from "../deck/Deck";
+
+import { ReactComponent as ListIcon } from './list.svg';
+import { ReactComponent as StackIcon } from './stack.svg';
 
 const cardService = new CardService();
 const ModeratorPage = () => {
@@ -24,6 +28,8 @@ const ModeratorPage = () => {
 
     const [open, setOpen] = React.useState(true);
     const [loading, setLoading] = React.useState(false);
+
+    const [stackDeckRender, setStackDeckRender] = useState<boolean>(false)
     const handleClose = () => {
         setOpen(false);
     };
@@ -95,6 +101,13 @@ const ModeratorPage = () => {
         setCardList(newCardList)
     }
 
+    const onSwipe = () => {
+        const newCardList = [...cardList]
+        const swipedCard = newCardList.shift()
+        newCardList.push(swipedCard!)
+        setCardList(newCardList)
+    }
+
     return (
         <div>
             <Backdrop
@@ -105,7 +118,12 @@ const ModeratorPage = () => {
             </Backdrop>
 
             <div className={"moderatorPageContainer"}>
+
                 <div className={"backButton"}>
+                    <IconButton sx={{ width: "50px", height: "50px"}}
+                    onClick={() => setStackDeckRender(!stackDeckRender)}>
+                        {stackDeckRender? <ListIcon/> : <StackIcon/>}
+                    </IconButton>
                     <IconButton sx={{color: "#071BCF"}}
                                 onClick={() => navigate("/academia_boardgame/choose", {state: {name}})}>
                         <ArrowBackIcon/>
@@ -117,15 +135,21 @@ const ModeratorPage = () => {
                 </div>
 
                 <div className={"cardListContainer"}>
-                    {cardList.map((cardData) =>
-                        <div className={"moderatorCard"} key={cardData.id}>
-                            <Card initialName={cardData.name}
-                                  initialAnswer={cardData.answer}
-                                  initialTitle={cardData.title}
-                                  isModerator={true}
-                            />
-                        </div>
-                    )}
+
+                    {
+                    stackDeckRender?
+                        <Deck cards={cardList} onSwipe={onSwipe}/> :
+                        cardList.map((cardData) =>
+                            <div className={"moderatorCard"} key={cardData.id}>
+                                <Card initialName={cardData.name}
+                                      initialAnswer={cardData.answer}
+                                      initialTitle={cardData.title}
+                                      isModerator={true}
+                                />
+                            </div>
+                        )
+                    }
+
 
                     <Button variant="contained" onClick={handleRandomize} sx={{
                         width: "319px", height: "45px", backgroundColor: "#868686",
