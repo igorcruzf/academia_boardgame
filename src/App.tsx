@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Route, Routes} from "react-router-dom";
-import UserPage from "./components/user/UserPage";
-import ModeratorPage from "./components/moderator/ModeratorPage";
-import HomePage from "./components/home/HomePage";
-import ChoosePlayerPage from "./components/choose_player/ChoosePlayerPage";
-import NotFoundPage from "./components/not_found/NotFoundPage";
+import UserPage from "./components/UserPage/UserPage";
+import ModeratorPage from "./components/ModeratorPage/ModeratorPage";
+import HomePage from "./components/HomePage/HomePage";
+import ChoosePlayerPage from "./components/ChoosePlayerPage/ChoosePlayerPage";
+import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
+import ScorePage from "./components/ScorePage/ScorePage";
+import Menu, {Action} from "./components/Menu/Menu";
 
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
                   <Route path="/academia_boardgame/choose" element={<ChoosePlayerPage/>}/>
                   <Route path="/academia_boardgame/user" element={<UserPage/>}/>
                   <Route path="/academia_boardgame/moderator" element={<ModeratorPage/>}/>
+                  <Route path="/academia_boardgame/score" element={<ScorePage/>}/>
                   <Route path="*" element={<NotFoundPage/>}/>
               </Routes>
           </div>
