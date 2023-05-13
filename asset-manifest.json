@@ -1,17 +1,19 @@
 {
   "files": {
-    "main.css": "/academia_boardgame/static/css/main.67bc308e.css",
-    "main.js": "/academia_boardgame/static/js/main.e0c0dc7a.js",
+    "main.css": "/academia_boardgame/static/css/main.1d5d5330.css",
+    "main.js": "/academia_boardgame/static/js/main.92437a7e.js",
     "static/js/787.6084f81c.chunk.js": "/academia_boardgame/static/js/787.6084f81c.chunk.js",
-    "static/media/list.svg": "/academia_boardgame/static/media/list.0c221c2188d5fa0c112924d01c9558aa.svg",
-    "static/media/stack.svg": "/academia_boardgame/static/media/stack.7804baa1dd037996fa57a45fc6403f71.svg",
+    "static/media/menu-background.png": "/academia_boardgame/static/media/menu-background.bb68297c99d47d1628da.png",
+    "static/media/logo.png": "/academia_boardgame/static/media/logo.7ae94dc051c1fcef6e6b.png",
+    "static/media/crown.png": "/academia_boardgame/static/media/crown.f41e0f0902bc7171413f.png",
+    "static/media/pencil.png": "/academia_boardgame/static/media/pencil.9e2e57ba085cda8cc3d7.png",
     "index.html": "/academia_boardgame/index.html",
-    "main.67bc308e.css.map": "/academia_boardgame/static/css/main.67bc308e.css.map",
-    "main.e0c0dc7a.js.map": "/academia_boardgame/static/js/main.e0c0dc7a.js.map",
+    "main.1d5d5330.css.map": "/academia_boardgame/static/css/main.1d5d5330.css.map",
+    "main.92437a7e.js.map": "/academia_boardgame/static/js/main.92437a7e.js.map",
     "787.6084f81c.chunk.js.map": "/academia_boardgame/static/js/787.6084f81c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.67bc308e.css",
-    "static/js/main.e0c0dc7a.js"
+    "static/css/main.1d5d5330.css",
+    "static/js/main.92437a7e.js"
   ]
 }
