@@ -12,7 +12,7 @@ class CardService {
     private readonly baseURL: string;
 
     constructor() {
-        this.baseURL = 'http://localhost:3001/cards';
+        this.baseURL = 'https://academia-4oto.onrender.com/cards';
     }
 
     public async createCard(createCardRequest: CreateCardRequest): Promise<void> {

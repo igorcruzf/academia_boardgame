@@ -9,7 +9,7 @@ class RoomService {
     private readonly baseURL: string;
 
     constructor() {
-        this.baseURL = 'http://localhost:3001/rooms';
+        this.baseURL = 'https://academia-4oto.onrender.com/rooms';
     }
     public async createRoom(roomName: string): Promise<void> {
         try{

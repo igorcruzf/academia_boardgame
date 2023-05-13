@@ -19,7 +19,7 @@ export interface Score{
 class PlayerService {
     private readonly baseURL: string;
     constructor() {
-        this.baseURL = 'http://localhost:3001/players';
+        this.baseURL = 'https://academia-4oto.onrender.com/players';
     }
     public async getPlayers(roomName: string): Promise<Player[]> {
         try{

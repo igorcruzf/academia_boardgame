@@ -85,7 +85,7 @@ const ModeratorPage = () => {
 
         getCards();
 
-        const socket = io('ws://localhost:3001');
+        const socket = io('wss://academia-4oto.onrender.com');
 
         socket.on(`cardsOf${room}`, (newCardList) => {
             setCardList(newCardList);
