@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/academia_boardgame/static/css/main.1d5d5330.css",
-    "main.js": "/academia_boardgame/static/js/main.778a200e.js",
+    "main.js": "/academia_boardgame/static/js/main.c7f21636.js",
     "static/js/787.6084f81c.chunk.js": "/academia_boardgame/static/js/787.6084f81c.chunk.js",
     "static/media/menu-background.png": "/academia_boardgame/static/media/menu-background.bb68297c99d47d1628da.png",
     "static/media/crown.png": "/academia_boardgame/static/media/crown.f41e0f0902bc7171413f.png",
     "static/media/pencil.png": "/academia_boardgame/static/media/pencil.9e2e57ba085cda8cc3d7.png",
     "index.html": "/academia_boardgame/index.html",
     "main.1d5d5330.css.map": "/academia_boardgame/static/css/main.1d5d5330.css.map",
-    "main.778a200e.js.map": "/academia_boardgame/static/js/main.778a200e.js.map",
+    "main.c7f21636.js.map": "/academia_boardgame/static/js/main.c7f21636.js.map",
     "787.6084f81c.chunk.js.map": "/academia_boardgame/static/js/787.6084f81c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1d5d5330.css",
-    "static/js/main.778a200e.js"
+    "static/js/main.c7f21636.js"
   ]
 }
