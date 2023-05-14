@@ -51,6 +51,7 @@ export const Front = styled.div<{flipped: boolean}>`
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
+  pointer-events: ${(props) => props.flipped ? "none" : "auto"};
 `;
 
 export const Back = styled.div<{flipped: boolean}>`
@@ -61,7 +62,7 @@ export const Back = styled.div<{flipped: boolean}>`
   background-image: url(${img});
   background-size: 305%;
   background-color: rgba(255,255,255,0.7);
-  border-radius: 10px 10px 0 9px;
+  border-radius: 10px;
   background-blend-mode: lighten;
   background-repeat: no-repeat;
   margin-top: -413px;
