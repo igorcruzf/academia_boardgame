@@ -12,5 +12,7 @@ export const ButtonStyled = styled.button<{ width: string, height: string, backg
   border: ${({ borderColor }) => `1px solid ${borderColor}`};
   border-radius: 5px;
   color: ${({ fontColor }) => fontColor};
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 

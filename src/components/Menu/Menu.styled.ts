@@ -12,6 +12,7 @@ export const StyledMenu = styled.nav<{ open: boolean }>`
   background-size: 305%;
   background-color: rgba(255,255,255,0.7);
   background-blend-mode: lighten;
+  background-repeat: no-repeat;
   z-index: 4;
    
 

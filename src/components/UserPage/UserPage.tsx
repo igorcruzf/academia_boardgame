@@ -9,8 +9,8 @@ import {useLocation, useNavigate} from "react-router-dom";
 import AlertsContainer, {AlertData} from "../Alert/AlertsContainer";
 import {BackButton} from "../ScorePage/ScorePage.styled";
 import {colors, fontConfigs} from "../../global";
-import {SendButtonContainer, UserTitle} from "./UserPage.styled";
-import {Container} from "../HomePage/HomePage.styled";
+import {CardTitle, SendButtonContainer, UserTitle} from "./UserPage.styled";
+import {Container, Title} from "../HomePage/HomePage.styled";
 import Menu from "../Menu/Menu";
 import {Back, FlipContainer, Flipper, Front, LogoIcon} from "../Card/Card.styled";
 import {animated, useSpring} from "react-spring";
@@ -127,7 +127,7 @@ const UserPage = () => {
                     </Front>
                     <Back flipped={flipped}>
                         <animated.div style={{ opacity: opacity.to((o) => 1 - o) }}>
-                            <LogoIcon src={logoIcon}/>
+                            <CardTitle> ACADEMIA </CardTitle>
                         </animated.div>
                     </Back>
                 </Flipper>

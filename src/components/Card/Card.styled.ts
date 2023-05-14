@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {colors, fontConfigs} from "../../global";
 import {animated} from "react-spring";
+import img from '../../imgs/menu-background.png'
 
 export const CardContainer = styled.div<{ background: string }>`
   display: flex;
@@ -16,20 +17,18 @@ export const ScoreAndNameContainer = styled.div`
   gap: 10px;
 `;
 
-export const DecreaseButton = styled.button`
+export const DecreaseButton = styled.div`
   background: none;
   color: ${fontConfigs.fontColor};
-  font-size: 25px;
-  margin-bottom: 5px;
+  font-size: ${fontConfigs.sizes.normal};
   border: none;
   cursor: pointer;
 `;
 
-export const IncreaseButton = styled.button`
+export const IncreaseButton = styled.div`
   background: none;
   color: ${fontConfigs.fontColor};
-  font-size: 25px;
-  margin-bottom: 5px;
+  font-size: ${fontConfigs.sizes.normal};
   border: none;
   cursor: pointer;
 `;
@@ -59,12 +58,18 @@ export const Back = styled.div<{flipped: boolean}>`
   height: 100%;
   backface-visibility: hidden;
   transform: rotateY(180deg);
+  background-image: url(${img});
+  background-size: 305%;
+  background-color: rgba(255,255,255,0.7);
+  border-radius: 10px 10px 0 9px;
+  background-blend-mode: lighten;
+  background-repeat: no-repeat;
+  margin-top: -413px;
 
   & > div {
     position: absolute;
-    margin-top: -300px;
-    margin-left: 80px;
-    transform: rotate(-45deg);
+    margin-top: 120px;
+    transform: rotate(-50deg);
   }
 `;
 
